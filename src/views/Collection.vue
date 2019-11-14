@@ -15,6 +15,9 @@
             aspect-ratio="1"
             class="grey lighten-1"
           >
+            <div class="collection__image--hover" :style="imageColor(image)">
+              <p>{{ image.name }}</p>
+            </div>
             <template v-slot:placeholder>
               <v-row
                 class="fill-height"
@@ -886,12 +889,39 @@ export default {
     openGoogleMaps(lat, lon) {
       const url = `https://www.google.com/maps/@?api=1&map_action=map&center=${lat},${lon}&zoom=17&basemap=satellite`
       window.open(url);
+    },
+    imageColor({ sub }) {
+      if (sub === 'Amazon') {
+        return 'background: rgba(255,165, 0, 0.7);'
+      } else if (sub === 'Google') {
+        return 'background: rgba(0, 128, 0, 0.7);'
+      } else {
+        return 'background: rgba(0, 0, 255, 0.7);'
+      }
     }
   }
 }
 </script>
 
 <style lang='scss'>
+.collection {
+  &__image--hover {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.5s;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    &:hover {
+      opacity: 1
+    }
+  }
+}
 .dialog {
   font-family: 'Futura';
   overflow-y: hidden !important;

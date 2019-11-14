@@ -1,18 +1,37 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="home" @click="navigateTo('collection')">
+    <LogoComponent class="home__svg"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-
+import LogoComponent from '@/components/Logo.vue';
 export default {
   name: 'home',
   components: {
-    HelloWorld,
+    LogoComponent
   },
+  methods: {
+    navigateTo(dst) {
+      this.$router.push('/collection');
+    }
+  }
 };
 </script>
+
+<style lang="scss">
+.home {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  cursor: zoom-in;
+  &__svg {
+    width: 50%;
+  }
+}
+</style>
